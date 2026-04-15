@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PeakWeb Web Design & Development Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#06060a;
+  --dark:#0c0c12;
+  --card:#111118;
+  --card2:#18181f;
+  --border:#ffffff10;
+  --border2:#ffffff1e;
+  --gold:#c8a456;
+  --gold2:#e4cc88;
+  --goldfaint:rgba(200,164,86,.08);
+  --white:#f5f2ea;
+  --muted:#7e7c8a;
+  --muted2:#5a5866;
+  --tag:#1c1c26;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 52px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+nav.scrolled{background:rgba(6,6,10,.96);border-bottom-color:var(--border);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;letter-spacing:.1em;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:9px 24px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s}
+.nav-cta:hover{background:var(--gold);color:#000}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:flex-end;gap:0;padding:0 52px 90px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,86,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,86,.035) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 90% 70% at 30% 10%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 90% 70% at 30% 10%,#000 30%,transparent 100%)}
+.hero-orb{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(200,164,86,.09) 0%,transparent 65%);top:-160px;right:-200px;pointer-events:none}
+.hero-left{}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:14px;margin-bottom:28px;padding:7px 16px 7px 0;border-bottom:1px solid var(--border2)}
+.hero-eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.hero-eyebrow span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,6.5vw,96px);font-weight:300;line-height:.92;letter-spacing:-.015em;margin-bottom:36px}
+.hero-title em{font-style:italic;color:var(--gold);display:block}
+.hero-body{font-size:15px;color:var(--muted);max-width:420px;line-height:1.75;margin-bottom:44px}
+.hero-actions{display:flex;gap:16px;align-items:center}
+.btn-primary{background:var(--gold);color:#000;padding:14px 34px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--gold2)}
+.btn-ghost{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.btn-ghost:hover{color:var(--white)}
+.btn-ghost::after{content:'↓';transition:transform .2s}
+.btn-ghost:hover::after{transform:translateY(3px)}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:28px;padding-bottom:8px}
+.hero-stat-row{display:flex;flex-direction:column;align-items:flex-end;border-right:1px solid var(--border2);padding-right:28px}
+.hero-stat-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1}
+.hero-stat-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);margin-top:4px}
+.hero-avail{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--border2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:#3ecf8e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;background:var(--dark)}
+.marquee-track{display:flex;animation:marquee 35s linear infinite;white-space:nowrap}
+.marquee-item{display:inline-flex;align-items:center;gap:20px;padding:0 28px;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:300;color:var(--muted2)}
+.marquee-sep{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.6;flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTIONS ── */
+.section{padding:110px 52px}
+.section-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.section-eyebrow .line{width:32px;height:1px;background:var(--gold)}
+.section-eyebrow span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.5vw,62px);font-weight:300;line-height:1.05;margin-bottom:12px}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-sub{font-size:14px;color:var(--muted);max-width:480px;line-height:1.75}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:72px}
+.about-img-wrap{position:relative}
+.about-img-box{width:100%;aspect-ratio:4/5;background:var(--card2);border:1px solid var(--border);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+.about-img-initials{font-family:'Cormorant Garamond',serif;font-size:120px;font-weight:300;color:rgba(200,164,86,.15);letter-spacing:-.02em}
+.about-img-accent{position:absolute;bottom:-16px;right:-16px;width:60%;height:60%;border:1px solid var(--gold);opacity:.25}
+.about-tag{position:absolute;top:24px;left:-20px;background:var(--gold);color:#000;padding:8px 18px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.about-content{}
+.about-lead{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;line-height:1.4;color:var(--white);margin-bottom:28px}
+.about-lead em{font-style:italic;color:var(--gold)}
+.about-body{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:36px}
+.about-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.pill{padding:6px 16px;border:1px solid var(--border2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.about-numbers{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:32px;border-top:1px solid var(--border)}
+.about-num-item{}
+.about-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--gold);line-height:1}
+.about-num-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-top:4px}
+
+/* ── FILTERS ── */
+.filter-wrap{display:flex;gap:8px;flex-wrap:wrap;margin:52px 0 44px}
+.filter-btn{padding:8px 20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.filter-btn:hover{border-color:var(--gold);color:var(--white)}
+.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#000;font-weight:500}
+
+/* ── PROJECT GRID ── */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.project-card{background:var(--card);border:1px solid var(--border);overflow:hidden;transition:transform .35s,border-color .25s;position:relative;display:flex;flex-direction:column}
+.project-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.project-card.hidden{display:none}
+.card-preview{height:210px;position:relative;overflow:hidden;background:var(--card2)}
+.card-preview iframe{width:160%;height:160%;border:none;transform:scale(.625);transform-origin:top left;pointer-events:none}
+.card-preview-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.card-preview-fallback span{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,42px);font-weight:300;letter-spacing:.06em;color:rgba(255,255,255,.15)}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--card) 100%)}
+.card-num{position:absolute;top:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:11px;color:var(--gold);letter-spacing:.12em;opacity:.6}
+.card-body{padding:24px 26px 22px;flex:1;display:flex;flex-direction:column;gap:10px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap}
+.card-tag{background:var(--tag);color:var(--muted);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px}
+.card-tag.gold{background:rgba(200,164,86,.1);color:var(--gold)}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;line-height:1.2;color:var(--white)}
+.card-desc{font-size:12.5px;color:var(--muted);line-height:1.7;flex:1}
+.card-footer{display:flex;align-items:center;justify-content:flex-end;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.card-price-inr{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--gold);line-height:1}
+.card-price-usd{font-size:10px;color:var(--muted2);margin-top:2px;letter-spacing:.04em}
+.card-link{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);padding:6px 12px;transition:all .2s}
+.card-link:hover{color:var(--gold);border-color:var(--gold)}
+.card-link svg{transition:transform .2s}
+.card-link:hover svg{transform:translate(2px,-2px)}
+
+/* ── CASE STUDIES ── */
+.case-studies{display:flex;flex-direction:column;gap:2px;margin-top:70px}
+.case-study{display:grid;grid-template-columns:1fr 2fr;gap:0;background:var(--card);border:1px solid var(--border);overflow:hidden;transition:border-color .25s}
+.case-study:hover{border-color:var(--border2)}
+.cs-left{padding:48px 44px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between}
+.cs-num{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:rgba(200,164,86,.18);line-height:.9;margin-bottom:24px}
+.cs-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.cs-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;line-height:1.15;color:var(--white);margin-bottom:16px}
+.cs-tags{display:flex;gap:6px;flex-wrap:wrap}
+.cs-right{padding:48px 52px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.cs-challenge{}
+.cs-section-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);margin-bottom:8px}
+.cs-text{font-size:13.5px;color:var(--muted);line-height:1.78}
+.cs-results{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding-top:28px;border-top:1px solid var(--border)}
+.cs-result-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);line-height:1}
+.cs-result-label{font-size:11px;color:var(--muted);line-height:1.5;margin-top:4px}
+.cs-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-top:4px;transition:gap .2s}
+.cs-link:hover{gap:12px}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px}
+.testi-card{background:var(--card);border:1px solid var(--border);padding:40px 36px;display:flex;flex-direction:column;gap:20px;transition:border-color .25s}
+.testi-card:hover{border-color:var(--border2)}
+.testi-stars{display:flex;gap:4px}
+.testi-star{width:12px;height:12px;background:var(--gold);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.testi-quote{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:var(--white);flex:1}
+
+.testi-author{display:flex;flex-direction:column;gap:3px;padding-top:20px;border-top:1px solid var(--border)}
+.testi-name{font-size:13px;font-weight:500;color:var(--white)}
+.testi-role{font-size:11px;color:var(--muted);letter-spacing:.06em}
+.testi-company{font-size:10px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+
+/* ── SERVICES ── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;border:1px solid var(--border)}
+.service-item{padding:44px 40px;background:var(--card);border:none;transition:background .25s;position:relative}
+.service-item:hover{background:var(--card2)}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:rgba(200,164,86,.12);line-height:1;margin-bottom:18px}
+.service-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;margin-bottom:12px}
+.service-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.service-price{font-size:11px;letter-spacing:.08em;color:var(--gold);border-top:1px solid var(--border);padding-top:16px}
+
+/* ── CTA ── */
+.cta-section{padding:140px 52px;text-align:center;border-top:1px solid var(--border);background:var(--dark);position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,164,86,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,86px);font-weight:300;line-height:.95;margin-bottom:28px}
+.cta-title em{font-style:italic;color:var(--gold);display:block}
+.cta-sub{color:var(--muted);font-size:15px;max-width:400px;margin:0 auto 56px;line-height:1.75}
+.cta-actions{display:flex;gap:16px;justify-content:center;align-items:center}
+
+/* ── FOOTER ── */
+footer{padding:36px 52px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--white)}
+.footer-logo span{color:var(--gold)}
+footer p{font-size:12px;color:var(--muted);text-align:center}
+.footer-right{text-align:right;font-size:12px;color:var(--muted)}
+
+/* ── FADE ── */
+.fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.fade.visible{opacity:1;transform:none}
+
+@media(max-width:1024px){
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .testimonials-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .about-img-wrap{max-width:340px}
+  .cs-results{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  .nav-links,.nav-cta{display:none}
+  .hero{grid-template-columns:1fr;padding:120px 20px 60px;min-height:auto;gap:48px}
+  .hero-right{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+  .hero-stat-row{align-items:flex-start;border-right:none;border-bottom:1px solid var(--border2);padding-right:0;padding-bottom:16px}
+  .section{padding:72px 20px}
+  .projects-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .case-study{grid-template-columns:1fr}
+  .cs-left{border-right:none;border-bottom:1px solid var(--border)}
+  .cta-section{padding:80px 20px}
+  footer{grid-template-columns:1fr;gap:12px;text-align:center}
+  .footer-right{text-align:center}
+
+  
+  
+  
+  textarea
+  
+  
+  
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">PeakWeb<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Start a Project</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-left">
+    
+    <h1 class="hero-title fade">Websites That<br/>Make Clients<br/><em>Choose You.</em></h1>
+    <p class="hero-body fade">I build high-performance websites and digital products for businesses that are serious about growth across India, the UAE, and beyond.</p>
+    <div class="hero-actions fade">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-ghost">Start a Project</a>
+    </div>
+  </div>
+  </section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-sep"></span>WordPress Development</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Shopify Stores</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>E-Commerce</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>UI/UX Design</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Brand Identity</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>SEO Optimisation</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>E-Commerce Solutions</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Corporate Websites</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Healthcare & NGO</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>WordPress Development</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Shopify Stores</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>E-Commerce</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>UI/UX Design</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Brand Identity</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>SEO Optimisation</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>E-Commerce Solutions</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Corporate Websites</span>
+    <span class="marquee-item"><span class="marquee-sep"></span>Healthcare & NGO</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-eyebrow fade"><span>About Us</span></div>
+  <h2 class="section-title fade">The Agency Behind<br/>The <em>Projects</em></h2>
+  <div class="about-grid">
+    <div class="about-img-wrap fade">
+      <div class="about-img-box">
+        <img src="peakweb_final_visual.png" alt="PeakWeb Agency Visual" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      
+      <div class="about-tag">Digital Design Agency</div>
+    </div>
+    <div class="about-content fade">
+      <p class="about-lead">We help businesses stop losing clients to a website that doesn't do them <em>justice.</em></p>
+      <p class="about-body">We are PeakWeb, a digital design and development agency based in India, specialising in building websites that look sharp, load fast, and actually convert. We've worked with businesses across industries from industrial B2B companies in the UAE to lifestyle e-commerce brands, NGOs in the US, and healthcare specialists each one needing something different, each one getting something built specifically for them.</p>
+      <p class="about-body" style="margin-top:0">Our process is simple: understand your business, understand your customers, and build a digital presence that bridges the two. No templates recycled from another client. No generic layouts. Every project starts from scratch.</p>
+      <div class="about-pills">
+        <span class="pill">WordPress</span>
+        <span class="pill">Shopify</span>
+        <span class="pill">E-Commerce</span>
+        <span class="pill">Figma</span>
+        <span class="pill">HTML / CSS / JS</span>
+        <span class="pill">SEO</span>
+        <span class="pill">Performance Optimisation</span>
+        <span class="pill">Wix</span>
+      </div>
+      <div class="about-numbers">
+        <div class="about-num-item">
+          <div class="about-num">20+</div>
+          <div class="about-num-label">Live Projects</div>
+        </div>
+        <div class="about-num-item">
+          <div class="about-num">100%</div>
+          <div class="about-num-label">On-Time Delivery</div>
+        </div>
+        <div class="about-num-item">
+          <div class="about-num">3</div>
+          <div class="about-num-label">Countries Served</div>
+        </div>
+        <div class="about-num-item">
+          <div class="about-num">8+</div>
+          <div class="about-num-label">Industries Covered</div>
+        </div>
+        <div class="about-num-item">
+          <div class="about-num">5+</div>
+          <div class="about-num-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section" id="work" style="padding-top:0">
+  <div class="section-eyebrow fade"><span>Selected Work</span></div>
+  <h2 class="section-title fade">20+ Projects.<br/><em>8 Industries.</em></h2>
+  <p class="section-sub fade" style="margin-top:8px">From a bitumen exporter in the UAE to a natural skincare brand in India every project is a different problem, solved properly.</p>
+
+  <div class="filter-wrap fade">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="corporate">Corporate</button>
+    <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+    <button class="filter-btn" data-filter="nonprofit">Non-Profit</button>
+    <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+    <button class="filter-btn" data-filter="creative">Creative</button>
+    <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid">
+
+    <!-- 01 Gulf Bitumen -->
+    <div class="project-card fade" data-category="corporate">
+      <div class="card-preview">
+        <iframe src="https://gulfbitumen.com/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="card-overlay"></div>
+        <div class="card-num">01</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Corporate</span><span class="card-tag">WordPress</span><span class="card-tag">B2B</span><span class="card-tag">UAE</span></div>
+        <h3 class="card-title">Gulf Bitumen</h3>
+        <p class="card-desc">High-authority B2B corporate website for one of UAE's leading bitumen exporters. Built for global lead generation across UAE, Bahrain, and Iraq with strong SEO fundamentals.</p>
+        <div class="card-footer">
+          
+          <a href="https://gulfbitumen.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 Liaa Life -->
+    <div class="project-card fade" data-category="lifestyle">
+      <div class="card-preview" style="background:linear-gradient(135deg,#160f1c,#2a1735)">
+        <div class="card-preview-fallback"><span>Liaa Life</span></div>
+        <div class="card-overlay"></div><div class="card-num">02</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Lifestyle</span><span class="card-tag">WordPress</span><span class="card-tag">Wellness</span></div>
+        <h3 class="card-title">Liaa Life</h3>
+        <p class="card-desc">A refined wellness brand website designed for aspiration and calm. Editorial layout, immersive brand storytelling, and a visual identity that commands attention.</p>
+        <div class="card-footer">
+          
+          <a href="https://liaalife.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 Quirk Emotion Media -->
+    <div class="project-card fade" data-category="creative">
+      <div class="card-preview" style="background:linear-gradient(135deg,#0d1828,#162340)">
+        <div class="card-preview-fallback"><span>Quirk Emotion</span></div>
+        <div class="card-overlay"></div><div class="card-num">03</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Creative</span><span class="card-tag">WordPress</span><span class="card-tag">Media</span></div>
+        <h3 class="card-title">Quirk Emotion Media</h3>
+        <p class="card-desc">Portfolio-driven website for a motion-led creative media agency. Bold visual design, immersive reel showcases, and a brand voice built to attract high-value clients.</p>
+        <div class="card-footer">
+          
+          <a href="https://quirkemotionmedia.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 Global Net Computers -->
+    <div class="project-card fade" data-category="ecommerce">
+      <div class="card-preview">
+        <iframe src="https://globalnetcomputers.in/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="card-overlay"></div><div class="card-num">04</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">E-Commerce</span><span class="card-tag">E-Commerce</span><span class="card-tag">Tech Retail</span></div>
+        <h3 class="card-title">Global Net Computers</h3>
+        <p class="card-desc">Full-featured E-Commerce store for a multi-brand tech retailer. HP, Dell, Asus, Lenovo, MSI all under one roof with a conversion-optimised shopping experience.</p>
+        <div class="card-footer">
+          
+          <a href="https://globalnetcomputers.in/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 Essence Elevators -->
+    <div class="project-card fade" data-category="corporate">
+      <div class="card-preview">
+        <iframe src="https://essenceelevators.com/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="card-overlay"></div><div class="card-num">05</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Corporate</span><span class="card-tag">WordPress</span><span class="card-tag">Premium</span></div>
+        <h3 class="card-title">Essence Elevators</h3>
+        <p class="card-desc">Premium corporate website for an elevator engineering brand. Sophisticated animations, full product showcase, and a design that communicates precision and quality craftsmanship.</p>
+        <div class="card-footer">
+          
+          <a href="https://essenceelevators.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 Act of Humanity -->
+    <div class="project-card fade" data-category="nonprofit">
+      <div class="card-preview">
+        <iframe src="https://actofhumanity.org/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="card-overlay"></div><div class="card-num">06</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Non-Profit</span><span class="card-tag">WordPress</span><span class="card-tag">NGO</span><span class="card-tag">USA</span></div>
+        <h3 class="card-title">Act of Humanity</h3>
+        <p class="card-desc">Cause-driven website for a US-based NGO running charity campaigns, scholarships, and volunteer drives. Donation-optimised flow with powerful emotional storytelling.</p>
+        <div class="card-footer">
+          
+          <a href="https://actofhumanity.org/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 Minds2Brand -->
+    <div class="project-card fade" data-category="creative">
+      <div class="card-preview" style="background:linear-gradient(135deg,#0e1c10,#192e1c)">
+        <div class="card-preview-fallback"><span>Minds2Brand</span></div>
+        <div class="card-overlay"></div><div class="card-num">07</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Creative</span><span class="card-tag">WordPress</span><span class="card-tag">Branding</span></div>
+        <h3 class="card-title">Minds2Brand</h3>
+        <p class="card-desc">Full-service branding agency website built to attract high-ticket clients. Portfolio-forward with case studies, service depth, and a brand voice that positions them as experts.</p>
+        <div class="card-footer">
+          
+          <a href="https://minds2brand.co.in/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 Sampan Naturals -->
+    <div class="project-card fade" data-category="ecommerce">
+      <div class="card-preview">
+        <iframe src="https://sampannaturals.com/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="card-overlay"></div><div class="card-num">08</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">E-Commerce</span><span class="card-tag">E-Commerce</span><span class="card-tag">Skincare</span></div>
+        <h3 class="card-title">Sampan Naturals</h3>
+        <p class="card-desc">E-commerce website for a handcrafted natural soap and skincare brand. Earthy organic aesthetic, ingredient storytelling, and a clean buying experience built to convert.</p>
+        <div class="card-footer">
+          
+          <a href="https://sampannaturals.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 The Space Fiber -->
+    <div class="project-card fade" data-category="corporate">
+      <div class="card-preview">
+        <iframe src="https://thespacefiber.com/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="card-overlay"></div><div class="card-num">09</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Corporate</span><span class="card-tag">WordPress</span><span class="card-tag">Lighting</span></div>
+        <h3 class="card-title">The Space Fiber</h3>
+        <p class="card-desc">Service website for a fiber optic lighting company. Gallery-forward with residential and commercial project showcases, and a smooth contact-to-inquiry flow.</p>
+        <div class="card-footer">
+          
+          <a href="https://thespacefiber.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 Ameek Creations -->
+    <div class="project-card fade" data-category="creative">
+      <div class="card-preview" style="background:linear-gradient(135deg,#1a190e,#2e2c14)">
+        <div class="card-preview-fallback"><span>Ameek Creations</span></div>
+        <div class="card-overlay"></div><div class="card-num">10</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Creative</span><span class="card-tag">WordPress</span><span class="card-tag">Design Studio</span></div>
+        <h3 class="card-title">Ameek Creations</h3>
+        <p class="card-desc">Creative design studio website built around a strong visual identity. Distinct brand personality with work showcase and service depth that attracts serious creative-led businesses.</p>
+        <div class="card-footer">
+          
+          <a href="https://ameekcreations.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 Dr. Imran Khan -->
+    <div class="project-card fade" data-category="healthcare">
+      <div class="card-preview" style="background:linear-gradient(135deg,#09182a,#0e2440)">
+        <div class="card-preview-fallback"><span>Dr. Imran Khan</span></div>
+        <div class="card-overlay"></div><div class="card-num">11</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="card-tag gold">Healthcare</span><span class="card-tag">WordPress</span><span class="card-tag">Medical</span></div>
+        <h3 class="card-title">Dr. Imran Khan Sports Medicine</h3>
+        <p class="card-desc">Professional medical website for a sports medicine specialist. Trust-forward design with appointment flow, specialisation showcase, and a clean clinical aesthetic that builds patient confidence.</p>
+        <div class="card-footer">
+          
+          <a href="https://drimrankhansportsmedicine.com/" target="_blank" class="card-link">Live Site <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section" id="case-studies" style="padding-top:0">
+  <div class="section-eyebrow fade"><span>Case Studies</span></div>
+  <h2 class="section-title fade">The Problem.<br/><em>The Solution.</em> The Result.</h2>
+  <p class="section-sub fade" style="margin-top:8px">Every website solves a real business problem. Here's how three of them got solved.</p>
+
+  <div class="case-studies">
+
+    <!-- Case Study 1: Gulf Bitumen -->
+    <div class="case-study fade">
+      <div class="cs-left">
+        <div>
+          <div class="cs-num">01</div>
+          <div class="cs-label">Case Study</div>
+          <h3 class="cs-title">Gulf Bitumen Global B2B Lead Generation</h3>
+          <div class="cs-tags">
+            <span class="card-tag">Corporate</span>
+            <span class="card-tag">WordPress</span>
+            <span class="card-tag">B2B</span>
+          </div>
+        </div>
+        <a href="https://gulfbitumen.com/" target="_blank" class="cs-link">View Live Site →</a>
+      </div>
+      <div class="cs-right">
+        <div>
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">Gulf Bitumen is one of UAE's leading bitumen exporters, supplying to buyers across the Middle East and beyond. Their old digital presence didn't reflect their scale they were losing credibility and inbound leads to competitors who simply had better-looking, better-ranking websites. The task: build something that could hold its own in an international B2B search environment.</p>
+        </div>
+        <div>
+          <div class="cs-section-label">What Was Built</div>
+          <p class="cs-text">A full-scale WordPress corporate website with dedicated pages for every bitumen grade (Penetration, Viscosity, Performance, Cutback, and more), country-specific supply pages for Bahrain, UAE, and Iraq, and a structured content architecture designed to rank for long-tail industrial search terms. The design communicates industrial authority clean, structured, and built for procurement managers, not casual browsers.</p>
+        </div>
+        <div class="cs-results">
+          <div><div class="cs-result-num">15+</div><div class="cs-result-label">Product & grade pages built</div></div>
+          <div><div class="cs-result-num">3</div><div class="cs-result-label">Countries with dedicated pages</div></div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study 2: Younique Creations -->
+    <div class="case-study fade">
+      <div class="cs-left">
+        <div>
+          <div class="cs-num">02</div>
+          <div class="cs-label">Case Study</div>
+          <h3 class="cs-title">Younique Creations Multi-Brand Shopify Store</h3>
+          <div class="cs-tags">
+            <span class="card-tag">E-Commerce</span>
+            <span class="card-tag">Shopify</span>
+            <span class="card-tag">Multi-Brand</span>
+          </div>
+        </div>
+        <a href="https://youniquecreations.in/" target="_blank" class="cs-link">View Live Site →</a>
+      </div>
+      <div class="cs-right">
+        <div>
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">Younique Creations wasn't just one brand it was an umbrella for multiple product lines: jewellery under their main label, birthday decor through Decofy, baking accessories through TrendyTrolley, and bridal and baby shower collections. The challenge was building a single store that could house all of this without feeling cluttered, while making it easy for different types of shoppers to find exactly what they came for.</p>
+        </div>
+        <div>
+          <div class="cs-section-label">What Was Built</div>
+          <p class="cs-text">A structured Shopify store with a clean navigation architecture that separates product categories and brand identities without fragmenting the shopping experience. Each sub-brand has its own collection space while sharing a unified checkout. Product pages were built for mobile-first browsing the primary channel for their target audience with social links integrated to drive traffic from Instagram directly into purchase flow.</p>
+        </div>
+        <div class="cs-results">
+          <div><div class="cs-result-num">4</div><div class="cs-result-label">Product categories unified</div></div>
+          <div><div class="cs-result-num">2</div><div class="cs-result-label">Sub-brands housed in one store</div></div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study 3: Essence Elevators -->
+    <div class="case-study fade">
+      <div class="cs-left">
+        <div>
+          <div class="cs-num">03</div>
+          <div class="cs-label">Case Study</div>
+          <h3 class="cs-title">Essence Elevators Premium Corporate Presence</h3>
+          <div class="cs-tags">
+            <span class="card-tag">Corporate</span>
+            <span class="card-tag">WordPress</span>
+            <span class="card-tag">Engineering</span>
+          </div>
+        </div>
+        <a href="https://essenceelevators.com/" target="_blank" class="cs-link">View Live Site →</a>
+      </div>
+      <div class="cs-right">
+        <div>
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">Essence Elevators operates in a market where trust is everything businesses and housing developers don't buy an elevator without confidence in the company behind it. They needed a website that reflected the premium, precision-engineered nature of their products and could hold its own when being evaluated alongside established competitors during a buying decision.</p>
+        </div>
+        <div>
+          <div class="cs-section-label">What Was Built</div>
+          <p class="cs-text">A premium WordPress website with sophisticated scroll-triggered animations, a full product and elevator type showcase, and detailed About and contact sections designed to pass the credibility check during vendor evaluation. The visual language refined, minimal, and confident directly mirrors the quality of the physical product. Built with the Hellix theme architecture for smooth performance across devices.</p>
+        </div>
+        <div class="cs-results">
+          <div><div class="cs-result-num">5+</div><div class="cs-result-label">Product category pages</div></div>
+          <div><div class="cs-result-num">Premium</div><div class="cs-result-label">Visual tier positioning</div></div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials" style="padding-top:0">
+  <div class="section-eyebrow fade"><span>Client Reviews</span></div>
+  <h2 class="section-title fade">What Clients<br/><em>Actually Say</em></h2>
+
+  <div class="testimonials-grid">
+
+    <div class="testi-card fade">
+      <div class="testi-stars"><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div></div>
+      <p class="testi-quote">PeakWeb understood exactly what an international B2B client needs to see on a website. The site positions us as a credible, serious exporter and that's reflected in the enquiries we receive.</p>
+      <div class="testi-author">
+        <div class="testi-name">Business Development Team</div>
+        <div class="testi-role">Export Operations</div>
+        <div class="testi-company">Gulf Bitumen UAE</div>
+      </div>
+    </div>
+
+    <div class="testi-card fade">
+      <div class="testi-stars"><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div></div>
+      <p class="testi-quote">We had multiple product lines and didn't know how to structure them online. PeakWeb solved it cleanly the store is easy to navigate and our customers find what they want without confusion.</p>
+      <div class="testi-author">
+        <div class="testi-name">Founder</div>
+        <div class="testi-role">E-Commerce Operations</div>
+        <div class="testi-company">Younique Creations India</div>
+      </div>
+    </div>
+
+    <div class="testi-card fade">
+      <div class="testi-stars"><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div></div>
+      <p class="testi-quote">The website completely changed how clients perceive us when they visit for the first time. The design says premium before they've even read a single word. Worth every rupee.</p>
+      <div class="testi-author">
+        <div class="testi-name">Director</div>
+        <div class="testi-role">Business Development</div>
+        <div class="testi-company">Essence Elevators India</div>
+      </div>
+    </div>
+
+    <div class="testi-card fade">
+      <div class="testi-stars"><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div></div>
+      <p class="testi-quote">Donations went up noticeably after the redesign. The new site communicates our mission clearly and makes it easy for people to contribute. PeakWeb delivered something that genuinely helps our cause.</p>
+      <div class="testi-author">
+        <div class="testi-name">Campaign Lead</div>
+        <div class="testi-role">Digital & Outreach</div>
+        <div class="testi-company">Act of Humanity USA</div>
+      </div>
+    </div>
+
+    <div class="testi-card fade">
+      <div class="testi-stars"><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div></div>
+      <p class="testi-quote">Our old website was losing us patients before they even called. PeakWeb rebuilt it with a clear structure and a design that actually feels trustworthy. The appointment requests picked up quickly after launch.</p>
+      <div class="testi-author">
+        <div class="testi-name">Dr. Imran Khan</div>
+        <div class="testi-role">Sports Medicine Specialist</div>
+        <div class="testi-company">Dr. Imran Khan Sports Medicine</div>
+      </div>
+    </div>
+
+    <div class="testi-card fade">
+      <div class="testi-stars"><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div></div>
+      <p class="testi-quote">PeakWeb took time to understand what makes our brand different before writing a single line of code. The result is a site that feels like us not like a template we were forced into.</p>
+      <div class="testi-author">
+        <div class="testi-name">Founder</div>
+        <div class="testi-role">Brand & Creative</div>
+        <div class="testi-company">Sampan Naturals India</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services" style="padding-top:0">
+  <div class="section-eyebrow fade"><span>Our Expertise</span></div>
+  <h2 class="section-title fade">What We Build &<br/><em>Who We Serve.</em></h2>
+  <div class="services-grid">
+    <div class="service-item fade">
+      <div class="service-num">01</div>
+      <h3 class="service-title">Business Website</h3>
+      <p class="service-desc">Custom WordPress website for service-based or corporate businesses. Fast, mobile-first, SEO-ready with all essential pages built from scratch.</p>
+      
+    </div>
+    <div class="service-item fade">
+      <div class="service-num">02</div>
+      <h3 class="service-title">E-Commerce Store</h3>
+      <p class="service-desc">E-Commerce or Shopify stores built to sell. Full product setup, payment gateway, mobile checkout, and a buying experience designed for conversion.</p>
+      
+    </div>
+    <div class="service-item fade">
+      <div class="service-num">03</div>
+      <h3 class="service-title">Premium Corporate</h3>
+      <p class="service-desc">For established businesses that need a website that matches their scale. Advanced animations, multi-page builds, deep SEO architecture, and premium design.</p>
+      
+    </div>
+    <div class="service-item fade">
+      <div class="service-num">04</div>
+      <h3 class="service-title">Brand Identity</h3>
+      <p class="service-desc">Logo, colour palette, typography system, and brand guidelines everything needed to show up consistently across digital and print touchpoints.</p>
+      
+    </div>
+    <div class="service-item fade">
+      <div class="service-num">05</div>
+      <h3 class="service-title">NGO / Healthcare</h3>
+      <p class="service-desc">Specialised builds for non-profits, charities, and healthcare providers. Donation flows, appointment systems, campaign pages, and trust-forward design.</p>
+      
+    </div>
+    <div class="service-item fade">
+      <div class="service-num">06</div>
+      <h3 class="service-title">Maintenance & SEO</h3>
+      <p class="service-desc">Monthly care plans for existing websites. Speed optimisation, security, plugin updates, content changes, and on-page SEO improvements included.</p>
+      
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="contact" class="cta-section">
+  <h2 class="cta-title fade">Let's Build Something<br/><em>Worth Showing.</em></h2>
+  <p class="cta-sub fade">If your current website isn't bringing in business, it's costing you business. Let's fix that.</p>
+  <div class="cta-actions fade" style="margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:20px;">
+    <a href="GOOGLE_FORM_LINK_HERE" target="_blank" class="btn-primary" style="font-size:15px;padding:18px 48px;letter-spacing:.1em;">Start a Project →</a>
+    <a href="https://wa.me/918454933534?text=Hi%20PeakWeb,%20I'm%20interested%20in%20starting%20a%20project!" target="_blank" style="color:var(--muted);font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:2px;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">Or message us on WhatsApp</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">PeakWeb<span>.</span></div>
+  <p>© 2025 PeakWeb. All rights reserved.</p>
+  <div class="footer-right">Web Design & Development</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), parseInt(e.target.dataset.delay) || 0);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+
+document.querySelectorAll('.hero .fade').forEach((el,i)=>{
+  el.dataset.delay = i * 160 + 100;
+});
+
+document.querySelectorAll('.fade').forEach((el)=>{
+  if (!el.dataset.delay) el.dataset.delay = 0;
+  obs.observe(el);
+});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>50);
+});
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(c=>{
+      c.classList.toggle('hidden',f!=='all'&&c.dataset.category!==f);
+    });
+  });
+});
+</script>
+</body>
+</html>
